@@ -28,26 +28,38 @@ HDMI is a framework that enables humanoid robots to acquire diverse whole-body i
 Set up the environment, then install IsaacSim, IsaacLab, and HDMI:
 
 ```bash
+# 0) One-time system deps on Ubuntu
+sudo apt-get update
+sudo apt-get install -y cmake build-essential
+
 # 1) Conda env
 conda create -n hdmi python=3.10 -y
 conda activate hdmi
+python -m pip install --upgrade pip
 
-# 2) IsaacSim
-pip install "isaacsim[all,extscache]==4.5.0" --extra-index-url https://pypi.nvidia.com
-isaacsim # test isaacsim
+# 2) Isaac Sim
+python -m pip install "isaacsim[all,extscache]==4.5.0" --extra-index-url https://pypi.nvidia.com
+isaacsim   # first run: accept the NVIDIA EULA, then close it
 
-# 3) IsaacLab
+# 3) Packaging workaround before IsaacLab
+python -m pip install "setuptools<81" wheel toml
+python -m pip install --no-build-isolation flatdict==4.0.1
+
+# 4) IsaacLab
 cd ..
 git clone git@github.com:isaac-sim/IsaacLab.git
 cd IsaacLab
 git checkout v2.2.0
 ./isaaclab.sh -i none
 
-# 4) HDMI
+# 5) Verify IsaacLab import
+python -c "import isaaclab; print(isaaclab.__file__)"
+
+# 6) HDMI
 cd ..
 git clone https://github.com/LeCAR-Lab/HDMI
 cd HDMI
-pip install -e .
+python -m pip install -e .
 ```
 
 ## Repository Structure
