@@ -4,6 +4,7 @@ import numpy as np
 import einops
 import itertools
 import os
+import sys
 import datetime
 import re
 from omegaconf import OmegaConf
@@ -15,6 +16,11 @@ from tensordict.nn import TensorDictSequential
 
 from active_adaptation.utils.export import export_onnx
 from active_adaptation.utils.wandb import parse_checkpoint_path
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
 
 
 @hydra.main(config_path="../cfg", config_name="play", version_base=None)

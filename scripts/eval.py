@@ -4,6 +4,7 @@ import numpy as np
 import einops
 import time
 import sys
+import os
 from tqdm import tqdm
 from omegaconf import OmegaConf, DictConfig
 
@@ -12,9 +13,13 @@ from isaaclab.app import AppLauncher
 import wandb
 import logging
 from tqdm import tqdm
-from scripts.helpers import make_env_policy, evaluate
 
-import os
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+
+from scripts.helpers import make_env_policy, evaluate
 import datetime
 import termcolor
 
@@ -79,4 +84,3 @@ def main(cfg: DictConfig):
 
 if __name__ == "__main__":
     main()
-

@@ -11,4 +11,11 @@
     //  "${workspaceFolder}/../IsaacLab/_isaac_sim/exts/isaacsim.replicator.synthetic_recorder",
     //  "${workspaceFolder}/../IsaacLab/_isaac_sim/exts/isaacsim.replicator.writers",
     ],
+    "ROS2.distro": "humble",
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
 }

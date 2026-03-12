@@ -26,6 +26,11 @@ from tensordict.nn import TensorDictModuleBase
 from tensordict import TensorDict
 
 # local import
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+
 from scripts.helpers import make_env_policy, EpisodeStats, evaluate
 import multiprocessing
 
@@ -34,7 +39,7 @@ torch.backends.cudnn.allow_tf32 = True
 torch.backends.cudnn.deterministic = False
 torch.backends.cudnn.benchmark = False
 
-FILE_PATH = os.path.dirname(os.path.abspath(__file__))
+FILE_PATH = SCRIPT_DIR
 CONFIG_PATH = os.path.join(FILE_PATH, "..", "cfg")
 
 
